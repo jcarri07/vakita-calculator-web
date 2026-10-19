@@ -1,0 +1,493 @@
+<!DOCTYPE html>
+<html lang="es">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Banner Play Store - Vakita Calculadora</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;600;700;800;900&display=swap"
+    rel="stylesheet">
+  <style>
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+    }
+
+    body {
+      background: #040d0a;
+      font-family: 'Plus Jakarta Sans', -apple-system, BlinkMacSystemFont, sans-serif;
+      color: #fff;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      padding: 24px 16px 60px;
+      min-height: 100vh;
+    }
+
+    .controls {
+      display: flex;
+      gap: 12px;
+      margin-bottom: 24px;
+      flex-wrap: wrap;
+      justify-content: center;
+    }
+
+    .btn {
+      background: #10B981;
+      color: #04140D;
+      font-weight: 800;
+      font-size: 15px;
+      padding: 12px 24px;
+      border-radius: 9999px;
+      border: none;
+      cursor: pointer;
+      display: flex;
+      align-items: center;
+      gap: 8px;
+      box-shadow: 0 4px 20px rgba(16, 185, 129, 0.4);
+      transition: all 0.2s ease;
+      font-family: inherit;
+    }
+
+    .btn:hover {
+      background: #34D399;
+      transform: translateY(-2px);
+    }
+
+    .btn-secondary {
+      background: #0E2419;
+      color: #A7F3D0;
+      border: 1px solid #1A4030;
+      box-shadow: none;
+    }
+
+    .btn-secondary:hover {
+      background: #153827;
+      color: #fff;
+    }
+
+    /* Container 9:16 for WhatsApp Status / Instagram Story */
+    .banner-wrapper {
+      width: 100%;
+      max-width: 440px;
+      aspect-ratio: 9 / 16;
+      background: radial-gradient(circle at 50% 12%, #0e3d2c 0%, #061911 45%, #030a07 100%);
+      border-radius: 36px;
+      border: 1px solid #1E533D;
+      box-shadow: 0 20px 60px rgba(0, 0, 0, 0.8), 0 0 80px rgba(16, 185, 129, 0.2);
+      overflow: hidden;
+      position: relative;
+      display: flex;
+      flex-direction: column;
+      padding: 36px 26px 30px;
+    }
+
+    /* Ambient glows */
+    .glow-top {
+      position: absolute;
+      top: -90px;
+      left: 50%;
+      transform: translateX(-50%);
+      width: 360px;
+      height: 360px;
+      background: radial-gradient(circle, rgba(16, 185, 129, 0.35) 0%, transparent 70%);
+      pointer-events: none;
+      filter: blur(40px);
+    }
+
+    .glow-bottom {
+      position: absolute;
+      bottom: -70px;
+      right: -70px;
+      width: 280px;
+      height: 280px;
+      background: radial-gradient(circle, rgba(56, 189, 248, 0.2) 0%, transparent 70%);
+      pointer-events: none;
+      filter: blur(40px);
+    }
+
+    /* Top Brand Tag */
+    .brand-tag {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      background: rgba(16, 185, 129, 0.12);
+      border: 1px solid rgba(52, 211, 153, 0.35);
+      border-radius: 9999px;
+      padding: 6px 14px;
+      font-size: 13px;
+      font-weight: 800;
+      color: #6EE7B7;
+      letter-spacing: 1px;
+      text-transform: uppercase;
+      align-self: center;
+      backdrop-filter: blur(10px);
+      margin-bottom: 16px;
+      z-index: 2;
+    }
+
+    /* Headlines */
+    .header-content {
+      text-align: center;
+      z-index: 2;
+      margin-bottom: 16px;
+    }
+
+    .sub-title {
+      font-size: 12px;
+      font-weight: 800;
+      color: #38BDF8;
+      text-transform: uppercase;
+      letter-spacing: 2.5px;
+      margin-bottom: 6px;
+    }
+
+    .main-title {
+      font-size: 26px;
+      font-weight: 900;
+      line-height: 1.15;
+      color: #FFFFFF;
+      margin-bottom: 8px;
+    }
+
+    .main-title span {
+      background: linear-gradient(135deg, #38BDF8 0%, #34D399 50%, #A7F3D0 100%);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+    }
+
+    /* Official Google Play Badge */
+    .play-badge-card {
+      background: linear-gradient(135deg, rgba(15, 23, 42, 0.9) 0%, rgba(30, 41, 59, 0.9) 100%);
+      border: 1.5px solid #334155;
+      border-radius: 20px;
+      padding: 12px 18px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 14px;
+      margin-bottom: 18px;
+      z-index: 2;
+      box-shadow: 0 10px 28px rgba(0, 0, 0, 0.5);
+    }
+
+    .play-logo {
+      width: 38px;
+      height: 38px;
+      flex-shrink: 0;
+    }
+
+    .play-text-group {
+      text-align: left;
+    }
+
+    .play-small {
+      font-size: 10px;
+      font-weight: 800;
+      letter-spacing: 1.5px;
+      text-transform: uppercase;
+      color: #94A3B8;
+    }
+
+    .play-big {
+      font-size: 20px;
+      font-weight: 900;
+      color: #FFFFFF;
+      letter-spacing: 0.5px;
+      display: flex;
+      align-items: center;
+      gap: 6px;
+    }
+
+    /* No Ads Banner Ribbon */
+    .no-ads-strip {
+      background: rgba(16, 185, 129, 0.15);
+      border: 1px solid rgba(16, 185, 129, 0.4);
+      border-radius: 12px;
+      padding: 7px 12px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 8px;
+      font-size: 11.5px;
+      font-weight: 800;
+      color: #6EE7B7;
+      text-transform: uppercase;
+      letter-spacing: 0.5px;
+      margin-bottom: 16px;
+      z-index: 2;
+    }
+
+    /* Mockup Phone Card */
+    .mockup-card {
+      background: rgba(12, 32, 24, 0.9);
+      border: 1px solid #1F543C;
+      border-radius: 22px;
+      padding: 14px;
+      backdrop-filter: blur(12px);
+      box-shadow: 0 16px 36px rgba(0, 0, 0, 0.6);
+      z-index: 2;
+      display: flex;
+      flex-direction: column;
+      gap: 8px;
+      margin-bottom: 18px;
+    }
+
+    .mockup-header {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      padding-bottom: 8px;
+      border-bottom: 1px solid #163E2D;
+    }
+
+    .mockup-title {
+      font-size: 11px;
+      font-weight: 800;
+      color: #6EE7B7;
+      text-transform: uppercase;
+      letter-spacing: 0.5px;
+    }
+
+    .rating-badge {
+      font-size: 11px;
+      font-weight: 800;
+      color: #FCD34D;
+      display: flex;
+      align-items: center;
+      gap: 3px;
+    }
+
+    .rate-row {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      background: #0E271D;
+      padding: 9px 12px;
+      border-radius: 12px;
+      border: 1px solid #184733;
+    }
+
+    .rate-name {
+      display: flex;
+      align-items: center;
+      gap: 8px;
+      font-size: 12.5px;
+      font-weight: 700;
+      color: #E2E8F0;
+    }
+
+    .rate-flag {
+      font-size: 15px;
+    }
+
+    .rate-val {
+      font-size: 14px;
+      font-weight: 900;
+      color: #34D399;
+      font-family: monospace;
+    }
+
+    /* Benefit Highlights */
+    .features-list {
+      display: flex;
+      flex-direction: column;
+      gap: 7px;
+      z-index: 2;
+      margin-bottom: auto;
+    }
+
+    .feature-item {
+      display: flex;
+      align-items: center;
+      gap: 8px;
+      font-size: 12px;
+      font-weight: 700;
+      color: #D1FAE5;
+    }
+
+    .feature-item span.icon {
+      color: #10B981;
+      font-size: 13px;
+    }
+
+    /* Footer Call To Action */
+    .footer-cta {
+      z-index: 2;
+      text-align: center;
+      padding-top: 12px;
+      border-top: 1px solid rgba(26, 64, 48, 0.7);
+    }
+
+    .cta-button {
+      background: linear-gradient(135deg, #10B981 0%, #059669 100%);
+      color: #03140C;
+      font-size: 13.5px;
+      font-weight: 900;
+      padding: 12px 16px;
+      border-radius: 14px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 8px;
+      box-shadow: 0 8px 24px rgba(16, 185, 129, 0.35);
+      margin-bottom: 6px;
+    }
+
+    .cta-sub {
+      font-size: 10.5px;
+      color: #7EDBB5;
+      font-weight: 600;
+    }
+  </style>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/html2canvas/1.4.1/html2canvas.min.js"></script>
+</head>
+
+<body>
+
+  <div class="controls">
+    <button class="btn" onclick="downloadImage()">
+      📥 Descargar Imagen Play Store (PNG)
+    </button>
+    <button class="btn btn-secondary" onclick="window.location.href='/promo-banner.html'">
+      🖼️ Ver Banner Sin Publicidad
+    </button>
+    <button class="btn btn-secondary" onclick="window.location.href='/'">
+      ↩️ Volver a la Calculadora
+    </button>
+  </div>
+
+  <div class="banner-wrapper" id="promo-banner">
+    <div class="glow-top"></div>
+    <div class="glow-bottom"></div>
+
+    <!-- Brand Tag -->
+    <div class="brand-tag">
+      🐮 Vakita Calculadora
+    </div>
+
+    <!-- Main Headline -->
+    <div class="header-content">
+      <h1 class="main-title">
+        ¡Ya disponible en <br>
+        <span>Google Play Store!</span>
+      </h1>
+    </div>
+
+    <!-- Google Play Official Look Badge -->
+    <div class="play-badge-card">
+      <!-- SVG Play Store Logo -->
+      <svg class="play-logo" viewBox="0 0 512 512">
+        <path fill="#00C1A6"
+          d="M12.2 16.5c-4.4 7.6-6.8 17.5-6.8 29.4v420.2c0 11.9 2.4 21.8 6.8 29.4l238.1-239.5L12.2 16.5z" />
+        <path fill="#FF3333"
+          d="M327.4 330.4l-77.1-74.4L12.2 495.5c4.7 2.6 10.8 4.1 17.8 4.1 7.4 0 15.6-2 24.1-6.9l273.3-162.3z" />
+        <path fill="#00D6FF"
+          d="M327.4 181.6L54.1 19.3C45.6 14.4 37.4 12.4 30 12.4c-7 0-13.1 1.5-17.8 4.1l238.1 239.5 77.1-74.4z" />
+        <path fill="#FFD400" d="M495.2 233.9l-167.8-99.7-81.8 81.8 81.8 81.8 167.8-99.7c16.3-9.7 16.3-25.5 0-35.2v1z" />
+      </svg>
+      <div class="play-text-group">
+        <div class="play-small">Consíguelo en</div>
+        <div class="play-big">Google Play</div>
+      </div>
+    </div>
+
+    <!-- No Ads Ribbon -->
+    <div class="no-ads-strip">
+      🛡️ 100% Libre de Publicidad • Sin Anuncios
+    </div>
+
+    <!-- App Live Mockup -->
+    <div class="mockup-card">
+      <div class="mockup-header">
+        <span class="mockup-title">Tasas en tiempo real</span>
+        <div class="rating-badge">
+          ⭐⭐⭐⭐⭐ 5.0
+        </div>
+      </div>
+
+      <div class="rate-row">
+        <div class="rate-name">
+          <span class="rate-flag">🇺🇸</span> Dólar BCV Oficial
+        </div>
+        <div class="rate-val">Bs. Oficial</div>
+      </div>
+
+      <div class="rate-row">
+        <div class="rate-name">
+          <span class="rate-flag">🟢</span> USDT / Binance P2P
+        </div>
+        <div class="rate-val">Mercado P2P</div>
+      </div>
+
+      <div class="rate-row">
+        <div class="rate-name">
+          <span class="rate-flag">⚖️</span> Promedio BCV + USDT
+        </div>
+        <div class="rate-val">Equilibrado</div>
+      </div>
+    </div>
+
+    <!-- Feature Highlights -->
+    <div class="features-list">
+      <div class="feature-item">
+        <span class="icon">✅</span> Descarga ultraligera (menos de 10 MB)
+      </div>
+      <div class="feature-item">
+        <span class="icon">✅</span> Actualizaciones automáticas de tasas en vivo
+      </div>
+      <div class="feature-item">
+        <span class="icon">✅</span> Calculadora de comisiones y margen comercial
+      </div>
+      <div class="feature-item">
+        <span class="icon">✅</span> Historial completo de cotizaciones
+      </div>
+    </div>
+
+    <!-- Footer CTA -->
+    <div class="footer-cta">
+      <div class="cta-button">
+        📲 Búscala como "Vakita"
+      </div>
+      <div class="cta-sub">
+        Descárgala gratis en Google Play Store hoy mismo
+      </div>
+    </div>
+  </div>
+
+  <script>
+    async function downloadImage() {
+      const banner = document.getElementById('promo-banner');
+      const btn = document.querySelector('.btn');
+      const originalText = btn.innerHTML;
+      btn.innerHTML = '⏳ Generando imagen en alta definición...';
+
+      try {
+        const canvas = await html2canvas(banner, {
+          scale: 3, // 3x Ultra-sharp resolution
+          useCORS: true,
+          backgroundColor: '#040d0a',
+          logging: false
+        });
+
+        const link = document.createElement('a');
+        link.download = 'vakita-calculadora-playstore.png';
+        link.href = canvas.toDataURL('image/png');
+        link.click();
+        btn.innerHTML = '✅ ¡Imagen descargada!';
+        setTimeout(() => {
+          btn.innerHTML = originalText;
+        }, 3000);
+      } catch (err) {
+        console.error(err);
+        alert('Hubo un problema al generar la imagen. Intenta tomar una captura de pantalla.');
+        btn.innerHTML = originalText;
+      }
+    }
+  </script>
+</body>
+
+</html>

@@ -1,0 +1,169 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1080 1920" width="1080" height="1920">
+  <defs>
+    <!-- Background Gradient -->
+    <radialGradient id="bgGrad" cx="50%" cy="12%" r="75%">
+      <stop offset="0%" stop-color="#0f3c2b"/>
+      <stop offset="45%" stop-color="#071a13"/>
+      <stop offset="100%" stop-color="#020805"/>
+    </radialGradient>
+
+    <!-- Top Neon Glow -->
+    <radialGradient id="topGlow" cx="50%" cy="50%" r="50%">
+      <stop offset="0%" stop-color="#10B981" stop-opacity="0.45"/>
+      <stop offset="100%" stop-color="#10B981" stop-opacity="0"/>
+    </radialGradient>
+
+    <!-- Bottom Accent Glow -->
+    <radialGradient id="bottomGlow" cx="50%" cy="50%" r="50%">
+      <stop offset="0%" stop-color="#38BDF8" stop-opacity="0.35"/>
+      <stop offset="100%" stop-color="#38BDF8" stop-opacity="0"/>
+    </radialGradient>
+
+    <!-- Emerald Text Gradient -->
+    <linearGradient id="cyanEmeraldText" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#38BDF8"/>
+      <stop offset="50%" stop-color="#34D399"/>
+      <stop offset="100%" stop-color="#A7F3D0"/>
+    </linearGradient>
+
+    <!-- Card Background Gradient -->
+    <linearGradient id="cardGrad" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#0E281E" stop-opacity="0.95"/>
+      <stop offset="100%" stop-color="#081A12" stop-opacity="0.95"/>
+    </linearGradient>
+
+    <!-- Google Play Badge Background -->
+    <linearGradient id="playBadgeGrad" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#0F172A"/>
+      <stop offset="100%" stop-color="#1E293B"/>
+    </linearGradient>
+
+    <!-- Button Gradient -->
+    <linearGradient id="btnGrad" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#34D399"/>
+      <stop offset="100%" stop-color="#059669"/>
+    </linearGradient>
+
+    <!-- Drop Shadows -->
+    <filter id="shadowBig" x="-20%" y="-20%" width="140%" height="140%">
+      <feDropShadow dx="0" dy="16" stdDeviation="24" flood-color="#000000" flood-opacity="0.6"/>
+    </filter>
+  </defs>
+
+  <style>
+    .title-sub { font-family: 'Plus Jakarta Sans', system-ui, -apple-system, sans-serif; font-size: 26px; font-weight: 800; fill: #6EE7B7; letter-spacing: 4px; text-transform: uppercase; }
+    .title-main { font-family: 'Plus Jakarta Sans', system-ui, -apple-system, sans-serif; font-size: 56px; font-weight: 900; fill: #FFFFFF; text-anchor: middle; line-height: 1.1; }
+    .title-highlight { font-family: 'Plus Jakarta Sans', system-ui, -apple-system, sans-serif; font-size: 64px; font-weight: 900; fill: url(#cyanEmeraldText); text-anchor: middle; }
+    .badge-sub { font-family: 'Plus Jakarta Sans', system-ui, -apple-system, sans-serif; font-size: 22px; font-weight: 800; fill: #94A3B8; letter-spacing: 3px; text-transform: uppercase; }
+    .badge-main { font-family: 'Plus Jakarta Sans', system-ui, -apple-system, sans-serif; font-size: 46px; font-weight: 900; fill: #FFFFFF; letter-spacing: 1px; }
+    .card-title { font-family: 'Plus Jakarta Sans', system-ui, -apple-system, sans-serif; font-size: 26px; font-weight: 800; fill: #A7F3D0; text-transform: uppercase; letter-spacing: 1.5px; }
+    .rate-label { font-family: 'Plus Jakarta Sans', system-ui, -apple-system, sans-serif; font-size: 32px; font-weight: 700; fill: #E2E8F0; }
+    .rate-number { font-family: 'Plus Jakarta Sans', monospace, sans-serif; font-size: 36px; font-weight: 900; fill: #34D399; }
+    .feature-text { font-family: 'Plus Jakarta Sans', system-ui, -apple-system, sans-serif; font-size: 30px; font-weight: 700; fill: #D1FAE5; }
+    .btn-text { font-family: 'Plus Jakarta Sans', system-ui, -apple-system, sans-serif; font-size: 34px; font-weight: 900; fill: #04140D; text-anchor: middle; }
+    .sub-footer { font-family: 'Plus Jakarta Sans', system-ui, -apple-system, sans-serif; font-size: 26px; font-weight: 600; fill: #7EDBB5; text-anchor: middle; }
+    .ribbon-text { font-family: 'Plus Jakarta Sans', system-ui, -apple-system, sans-serif; font-size: 26px; font-weight: 800; fill: #6EE7B7; text-anchor: middle; letter-spacing: 1px; }
+  </style>
+
+  <!-- Canvas Background -->
+  <rect width="1080" height="1920" fill="url(#bgGrad)"/>
+
+  <!-- Glows -->
+  <circle cx="540" cy="220" r="500" fill="url(#topGlow)"/>
+  <circle cx="950" cy="1750" r="450" fill="url(#bottomGlow)"/>
+
+  <!-- Top Brand Pill -->
+  <g transform="translate(540, 130)">
+    <rect x="-190" y="-36" width="380" height="72" rx="36" fill="#10B981" fill-opacity="0.15" stroke="#34D399" stroke-width="2"/>
+    <text x="0" y="11" text-anchor="middle" class="title-sub">🐮 VAKITA CALC</text>
+  </g>
+
+  <!-- Headlines -->
+  <text x="540" y="270" text-anchor="middle" font-family="Plus Jakarta Sans, sans-serif" font-size="28" font-weight="800" fill="#38BDF8" letter-spacing="4">¡GRAN LANZAMIENTO!</text>
+  <text x="540" y="350" text-anchor="middle" class="title-main">¡Ya disponible en</text>
+  <text x="540" y="435" text-anchor="middle" class="title-highlight">Google Play Store!</text>
+
+  <!-- Google Play Official Look Card -->
+  <g transform="translate(140, 490)" filter="url(#shadowBig)">
+    <rect width="800" height="150" rx="36" fill="url(#playBadgeGrad)" stroke="#334155" stroke-width="2.5"/>
+
+    <!-- Google Play Logo Vectors -->
+    <g transform="translate(50, 30) scale(0.18)">
+      <path fill="#00C1A6" d="M12.2 16.5c-4.4 7.6-6.8 17.5-6.8 29.4v420.2c0 11.9 2.4 21.8 6.8 29.4l238.1-239.5L12.2 16.5z"/>
+      <path fill="#FF3333" d="M327.4 330.4l-77.1-74.4L12.2 495.5c4.7 2.6 10.8 4.1 17.8 4.1 7.4 0 15.6-2 24.1-6.9l273.3-162.3z"/>
+      <path fill="#00D6FF" d="M327.4 181.6L54.1 19.3C45.6 14.4 37.4 12.4 30 12.4c-7 0-13.1 1.5-17.8 4.1l238.1 239.5 77.1-74.4z"/>
+      <path fill="#FFD400" d="M495.2 233.9l-167.8-99.7-81.8 81.8 81.8 81.8 167.8-99.7c16.3-9.7 16.3-25.5 0-35.2v1z"/>
+    </g>
+
+    <text x="175" y="65" class="badge-sub">DISPONIBLE EN</text>
+    <text x="175" y="112" class="badge-main">Google Play</text>
+  </g>
+
+  <!-- Ribbon No Ads -->
+  <g transform="translate(180, 675)">
+    <rect width="720" height="60" rx="16" fill="#10B981" fill-opacity="0.15" stroke="#10B981" stroke-width="1.5" stroke-opacity="0.5"/>
+    <text x="360" y="40" class="ribbon-text">🛡️ 100% LIBRE DE PUBLICIDAD • SIN ANUNCIOS</text>
+  </g>
+
+  <!-- Central Rate Showcase Card -->
+  <g transform="translate(100, 770)" filter="url(#shadowBig)">
+    <rect width="880" height="470" rx="40" fill="url(#cardGrad)" stroke="#1F543C" stroke-width="2.5"/>
+
+    <text x="50" y="65" class="card-title">Tasas en Tiempo Real</text>
+    <text x="830" y="65" text-anchor="end" font-family="Plus Jakarta Sans, sans-serif" font-size="22" font-weight="800" fill="#FCD34D">⭐⭐⭐⭐⭐ 5.0</text>
+    <line x1="50" y1="90" x2="830" y2="90" stroke="#163E2D" stroke-width="2"/>
+
+    <!-- Row 1 -->
+    <rect x="50" y="115" width="780" height="85" rx="18" fill="#091E15" stroke="#1A4A35" stroke-width="1.5"/>
+    <text x="80" y="170" font-size="38">🇺🇸</text>
+    <text x="140" y="170" class="rate-label">Dólar BCV Oficial</text>
+    <text x="800" y="170" text-anchor="end" class="rate-number">Bs. Oficial</text>
+
+    <!-- Row 2 -->
+    <rect x="50" y="220" width="780" height="85" rx="18" fill="#091E15" stroke="#1A4A35" stroke-width="1.5"/>
+    <text x="80" y="275" font-size="38">🟢</text>
+    <text x="140" y="275" class="rate-label">USDT / Binance P2P</text>
+    <text x="800" y="275" text-anchor="end" class="rate-number">Mercado P2P</text>
+
+    <!-- Row 3 -->
+    <rect x="50" y="325" width="780" height="85" rx="18" fill="#091E15" stroke="#1A4A35" stroke-width="1.5"/>
+    <text x="80" y="380" font-size="38">⚖️</text>
+    <text x="140" y="380" class="rate-label">Promedio BCV + USDT</text>
+    <text x="800" y="380" text-anchor="end" class="rate-number">Equilibrado</text>
+  </g>
+
+  <!-- Features Bullet Points -->
+  <g transform="translate(110, 1280)">
+    <g transform="translate(0, 0)">
+      <circle cx="30" cy="20" r="22" fill="#10B981" fill-opacity="0.2"/>
+      <text x="18" y="30" font-size="28" fill="#10B981">✓</text>
+      <text x="75" y="30" class="feature-text">Descarga ultraligera (menos de 10 MB)</text>
+    </g>
+
+    <g transform="translate(0, 75)">
+      <circle cx="30" cy="20" r="22" fill="#10B981" fill-opacity="0.2"/>
+      <text x="18" y="30" font-size="28" fill="#10B981">✓</text>
+      <text x="75" y="30" class="feature-text">Actualizaciones automáticas de tasas en vivo</text>
+    </g>
+
+    <g transform="translate(0, 150)">
+      <circle cx="30" cy="20" r="22" fill="#10B981" fill-opacity="0.2"/>
+      <text x="18" y="30" font-size="28" fill="#10B981">✓</text>
+      <text x="75" y="30" class="feature-text">Calculadora de comisiones y margen comercial</text>
+    </g>
+
+    <g transform="translate(0, 225)">
+      <circle cx="30" cy="20" r="22" fill="#10B981" fill-opacity="0.2"/>
+      <text x="18" y="30" font-size="28" fill="#10B981">✓</text>
+      <text x="75" y="30" class="feature-text">Historial de precios completo y modo oscuro</text>
+    </g>
+  </g>
+
+  <!-- Bottom CTA Button -->
+  <g transform="translate(100, 1630)" filter="url(#shadowBig)">
+    <rect width="880" height="110" rx="30" fill="url(#btnGrad)"/>
+    <text x="440" y="70" class="btn-text">📲 Búscala como "Vakita Calculadora"</text>
+  </g>
+
+  <text x="540" y="1800" class="sub-footer">Descárgala gratis en Google Play Store hoy mismo</text>
+</svg>
