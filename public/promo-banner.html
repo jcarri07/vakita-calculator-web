@@ -1,0 +1,433 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Banner Promocional - Vakita Calculadora</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;600;700;800;900&display=swap" rel="stylesheet">
+  <style>
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+    }
+    body {
+      background: #040d0a;
+      font-family: 'Plus Jakarta Sans', -apple-system, BlinkMacSystemFont, sans-serif;
+      color: #fff;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      padding: 24px 16px 60px;
+      min-height: 100vh;
+    }
+    .controls {
+      display: flex;
+      gap: 12px;
+      margin-bottom: 24px;
+      flex-wrap: wrap;
+      justify-content: center;
+    }
+    .btn {
+      background: #10B981;
+      color: #04140D;
+      font-weight: 800;
+      font-size: 15px;
+      padding: 12px 24px;
+      border-radius: 9999px;
+      border: none;
+      cursor: pointer;
+      display: flex;
+      align-items: center;
+      gap: 8px;
+      box-shadow: 0 4px 20px rgba(16, 185, 129, 0.4);
+      transition: all 0.2s ease;
+      font-family: inherit;
+    }
+    .btn:hover {
+      background: #34D399;
+      transform: translateY(-2px);
+    }
+    .btn-secondary {
+      background: #0E2419;
+      color: #A7F3D0;
+      border: 1px solid #1A4030;
+      box-shadow: none;
+    }
+    .btn-secondary:hover {
+      background: #153827;
+      color: #fff;
+    }
+
+    /* Container for the 9:16 Canvas / Card */
+    .banner-wrapper {
+      width: 100%;
+      max-width: 440px;
+      aspect-ratio: 9 / 16;
+      background: radial-gradient(circle at 50% 15%, #0d3827 0%, #061811 50%, #030a07 100%);
+      border-radius: 36px;
+      border: 1px solid #1A4E38;
+      box-shadow: 0 20px 60px rgba(0, 0, 0, 0.8), 0 0 80px rgba(16, 185, 129, 0.2);
+      overflow: hidden;
+      position: relative;
+      display: flex;
+      flex-direction: column;
+      padding: 38px 26px 30px;
+    }
+
+    /* Ambient background glows */
+    .glow-top {
+      position: absolute;
+      top: -100px;
+      left: 50%;
+      transform: translateX(-50%);
+      width: 380px;
+      height: 380px;
+      background: radial-gradient(circle, rgba(16, 185, 129, 0.35) 0%, transparent 70%);
+      pointer-events: none;
+      filter: blur(40px);
+    }
+    .glow-bottom {
+      position: absolute;
+      bottom: -80px;
+      right: -80px;
+      width: 300px;
+      height: 300px;
+      background: radial-gradient(circle, rgba(5, 150, 105, 0.25) 0%, transparent 70%);
+      pointer-events: none;
+      filter: blur(40px);
+    }
+
+    /* Top Brand Tag */
+    .brand-tag {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      background: rgba(16, 185, 129, 0.12);
+      border: 1px solid rgba(52, 211, 153, 0.35);
+      border-radius: 9999px;
+      padding: 6px 14px;
+      font-size: 13px;
+      font-weight: 800;
+      color: #6EE7B7;
+      letter-spacing: 1px;
+      text-transform: uppercase;
+      align-self: center;
+      backdrop-filter: blur(10px);
+      margin-bottom: 20px;
+      z-index: 2;
+    }
+
+    /* Headlines */
+    .header-content {
+      text-align: center;
+      z-index: 2;
+      margin-bottom: 18px;
+    }
+    .sub-title {
+      font-size: 13px;
+      font-weight: 700;
+      color: #93C5FD;
+      text-transform: uppercase;
+      letter-spacing: 2px;
+      margin-bottom: 6px;
+    }
+    .main-title {
+      font-size: 26px;
+      font-weight: 900;
+      line-height: 1.15;
+      color: #FFFFFF;
+      margin-bottom: 12px;
+    }
+    .main-title span {
+      background: linear-gradient(135deg, #A7F3D0 0%, #34D399 50%, #10B981 100%);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+    }
+
+    /* Mega No-Ads Badge */
+    .no-ads-badge {
+      background: linear-gradient(135deg, rgba(239, 68, 68, 0.18) 0%, rgba(220, 38, 38, 0.08) 100%);
+      border: 1.5px solid rgba(248, 113, 113, 0.5);
+      border-radius: 20px;
+      padding: 12px 18px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 12px;
+      margin-bottom: 22px;
+      z-index: 2;
+      box-shadow: 0 8px 24px rgba(239, 68, 68, 0.18);
+    }
+    .badge-icon {
+      font-size: 28px;
+      flex-shrink: 0;
+    }
+    .badge-text-group {
+      text-align: left;
+    }
+    .badge-label {
+      font-size: 11px;
+      font-weight: 700;
+      text-transform: uppercase;
+      letter-spacing: 1.5px;
+      color: #FCA5A5;
+    }
+    .badge-title {
+      font-size: 17px;
+      font-weight: 900;
+      color: #FFF;
+      letter-spacing: -0.3px;
+    }
+
+    /* Mockup Phone Card */
+    .mockup-card {
+      background: rgba(12, 32, 24, 0.85);
+      border: 1px solid #1F543C;
+      border-radius: 24px;
+      padding: 16px;
+      backdrop-filter: blur(12px);
+      box-shadow: 0 16px 36px rgba(0, 0, 0, 0.6);
+      z-index: 2;
+      display: flex;
+      flex-direction: column;
+      gap: 10px;
+      margin-bottom: 20px;
+    }
+    .mockup-header {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      padding-bottom: 8px;
+      border-bottom: 1px solid #163E2D;
+    }
+    .mockup-title {
+      font-size: 12px;
+      font-weight: 800;
+      color: #6EE7B7;
+      text-transform: uppercase;
+      letter-spacing: 0.5px;
+    }
+    .live-dot {
+      display: flex;
+      align-items: center;
+      gap: 5px;
+      font-size: 10px;
+      font-weight: 700;
+      color: #34D399;
+    }
+    .dot {
+      width: 7px;
+      height: 7px;
+      background: #10B981;
+      border-radius: 50%;
+      box-shadow: 0 0 8px #10B981;
+    }
+
+    .rate-row {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      background: #0E271D;
+      padding: 10px 14px;
+      border-radius: 14px;
+      border: 1px solid #184733;
+    }
+    .rate-name {
+      display: flex;
+      align-items: center;
+      gap: 8px;
+      font-size: 13px;
+      font-weight: 700;
+      color: #E2E8F0;
+    }
+    .rate-flag {
+      font-size: 16px;
+    }
+    .rate-val {
+      font-size: 15px;
+      font-weight: 900;
+      color: #34D399;
+      font-family: monospace;
+    }
+
+    /* Benefit Highlights */
+    .features-list {
+      display: flex;
+      flex-direction: column;
+      gap: 8px;
+      z-index: 2;
+      margin-bottom: auto;
+    }
+    .feature-item {
+      display: flex;
+      align-items: center;
+      gap: 9px;
+      font-size: 12.5px;
+      font-weight: 700;
+      color: #D1FAE5;
+    }
+    .feature-item span.icon {
+      color: #10B981;
+      font-size: 14px;
+    }
+
+    /* Footer Call To Action */
+    .footer-cta {
+      z-index: 2;
+      text-align: center;
+      padding-top: 14px;
+      border-top: 1px solid rgba(26, 64, 48, 0.7);
+    }
+    .cta-button {
+      background: linear-gradient(135deg, #10B981 0%, #059669 100%);
+      color: #03140C;
+      font-size: 14px;
+      font-weight: 900;
+      padding: 12px 18px;
+      border-radius: 14px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 8px;
+      box-shadow: 0 8px 24px rgba(16, 185, 129, 0.35);
+      margin-bottom: 8px;
+    }
+    .cta-sub {
+      font-size: 11px;
+      color: #7EDBB5;
+      font-weight: 600;
+    }
+  </style>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/html2canvas/1.4.1/html2canvas.min.js"></script>
+</head>
+<body>
+
+  <div class="controls">
+    <button class="btn" onclick="downloadImage()">
+      📥 Descargar Imagen (PNG)
+    </button>
+    <button class="btn btn-secondary" onclick="window.location.href='/'">
+      ↩️ Volver a la Calculadora
+    </button>
+  </div>
+
+  <div class="banner-wrapper" id="promo-banner">
+    <div class="glow-top"></div>
+    <div class="glow-bottom"></div>
+
+    <!-- Brand Tag -->
+    <div class="brand-tag">
+      🐮 Vakita Calculadora
+    </div>
+
+    <!-- Main Headline -->
+    <div class="header-content">
+      <div class="sub-title">100% Hecha para ti</div>
+      <h1 class="main-title">
+        La única calculadora de tasas de Venezuela <br>
+        <span>LIBRE DE PUBLICIDAD</span>
+      </h1>
+    </div>
+
+    <!-- Big Shield Ad-Free Badge -->
+    <div class="no-ads-badge">
+      <div class="badge-icon">🚫</div>
+      <div class="badge-text-group">
+        <div class="badge-label">Experiencia Limpia</div>
+        <div class="badge-title">Sin Anuncios • Sin Banners • Sin Esperas</div>
+      </div>
+    </div>
+
+    <!-- App Live Mockup -->
+    <div class="mockup-card">
+      <div class="mockup-header">
+        <span class="mockup-title">Tasas en tiempo real</span>
+        <div class="live-dot">
+          <span class="dot"></span> EN VIVO
+        </div>
+      </div>
+
+      <div class="rate-row">
+        <div class="rate-name">
+          <span class="rate-flag">🇺🇸</span> Dólar BCV Oficial
+        </div>
+        <div class="rate-val">Bs. Oficial</div>
+      </div>
+
+      <div class="rate-row">
+        <div class="rate-name">
+          <span class="rate-flag">🟢</span> USDT / Binance P2P
+        </div>
+        <div class="rate-val">Mercado</div>
+      </div>
+
+      <div class="rate-row">
+        <div class="rate-name">
+          <span class="rate-flag">⚖️</span> Promedio BCV + USDT
+        </div>
+        <div class="rate-val">Equilibrado</div>
+      </div>
+    </div>
+
+    <!-- Feature Highlights -->
+    <div class="features-list">
+      <div class="feature-item">
+        <span class="icon">✅</span> Cero videos molestos o pantallas emergentes
+      </div>
+      <div class="feature-item">
+        <span class="icon">✅</span> Calculadora de comisiones y margen comercial
+      </div>
+      <div class="feature-item">
+        <span class="icon">✅</span> Historial de variación de tasas en vivo
+      </div>
+      <div class="feature-item">
+        <span class="icon">✅</span> Agrégala a tu pantalla de inicio en iOS y Android
+      </div>
+    </div>
+
+    <!-- Footer CTA -->
+    <div class="footer-cta">
+      <div class="cta-button">
+        ⚡ Úsala gratis en cualquier navegador
+      </div>
+      <div class="cta-sub">
+        iPhone • Android • PC • Mac • Sin descargar nada
+      </div>
+    </div>
+  </div>
+
+  <script>
+    async function downloadImage() {
+      const banner = document.getElementById('promo-banner');
+      const btn = document.querySelector('.btn');
+      const originalText = btn.innerHTML;
+      btn.innerHTML = '⏳ Generando imagen en alta definición...';
+
+      try {
+        const canvas = await html2canvas(banner, {
+          scale: 3, // 3x Ultra-sharp resolution
+          useCORS: true,
+          backgroundColor: '#040d0a',
+          logging: false
+        });
+
+        const link = document.createElement('a');
+        link.download = 'vakita-calculadora-sin-publicidad.png';
+        link.href = canvas.toDataURL('image/png');
+        link.click();
+        btn.innerHTML = '✅ ¡Imagen descargada!';
+        setTimeout(() => {
+          btn.innerHTML = originalText;
+        }, 3000);
+      } catch (err) {
+        console.error(err);
+        alert('Hubo un problema al generar la imagen. Intenta tomar una captura de pantalla.');
+        btn.innerHTML = originalText;
+      }
+    }
+  </script>
+</body>
+</html>
